@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Real-Time Clock</title>
+<style>
+  #clock {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+  }
+</style>
+</head>
+<body>
+<div id="clock"></div>
+
+<script>
+function updateTime() {
+  var now = new Date();
+  var date = now.toLocaleDateString('en-ID'); // Ganti 'en-ID' sesuai dengan kode bahasa dan wilayah Anda
+  var time = now.toLocaleTimeString('en-US'); // Ganti 'en-US' sesuai dengan kode bahasa dan wilayah Anda
+  
+  document.getElementById('clock').innerHTML = date + ' ' + time;
+}
+
+// Panggil updateTime() setiap detik
+setInterval(updateTime, 1000);
+
+// Panggil updateTime() untuk menampilkan waktu saat halaman pertama kali dimuat
+updateTime();
+</script>
+</body>
+</html>

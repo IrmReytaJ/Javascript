@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basic Dialog with jQuery</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+  }
+
+  .dialog {
+    display: none;
+    position: fixed;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    z-index: 1001;
+  }
+
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<div class="dialog">
+  <div class="close">X</div>
+  <h2>Halo</h2>
+  <p>Ini adalah konten dari dialog.</p>
+</div>
+
+<button id="openDialog">Buka Dialog</button>
+
+<script>
+$(document).ready(function(){
+    // Ketika tombol "Buka Dialog" diklik
+    $('#openDialog').click(function(){
+        $('.overlay').show();
+        $('.dialog').show();
+    });
+
+    // Ketika tombol "Tutup" di dalam dialog diklik
+    $('.close').click(function(){
+        $('.overlay').hide();
+        $('.dialog').hide();
+    });
+
+    // Jika klik di luar dialog, tutup dialog
+    $('.overlay').click(function(){
+        $('.overlay').hide();
+        $('.dialog').hide();
+    });
+
+    // Jika klik di dalam dialog, jangan tutup dialog
+    $('.dialog').click(function(event){
+        event.stopPropagation();
+    });
+});
+</script>
+
+</body>
+</html>
